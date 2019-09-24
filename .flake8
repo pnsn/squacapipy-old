@@ -1,0 +1,13 @@
+[flake8]
+ignore = 
+  H104,
+  H306,
+  H301,
+  H238,
+  H237
+exclude =
+  migrations,
+  __pycache__,
+  manage.py,
+  settings.py,
+  setup.py
