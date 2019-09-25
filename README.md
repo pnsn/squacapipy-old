@@ -4,7 +4,7 @@
 
 An API wrapper [squacapi](https://github.com/pnsn/squacapi)
 
-##Usage
+## Usage
 ### Configuration
 You will first need a token. Once you have a squac account you will be sent
 details to retrieve a token
