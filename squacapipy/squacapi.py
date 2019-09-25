@@ -33,7 +33,7 @@ class Response():
         self.body = body
 
 
-class Squacapi():
+class SquacapiBase():
     def __init__(self, app, resource):
         self. app = app
         self.resource = resource
@@ -53,7 +53,7 @@ class Squacapi():
                         json.loads(response.text))
 
     def get(self, **kwargs):
-        '''return resources object'''
+        '''get resources'''
         uri = self.uri()
         response = requests.get(uri, headers=HEADERS, params=kwargs)
         return self.make_response(response)
@@ -66,23 +66,92 @@ class Squacapi():
         return self.make_response(response)
 
     def put(self, id, payload):
-        '''update resources'''
+        '''update resource
+
+           Must have trailing slash after id!!
+        '''
         uri = self.uri() + id + "/"
-        print(uri)
-        print(payload)
         response = requests.put(uri, headers=HEADERS,
                                 data=json.dumps(payload))
 
         return self.make_response(response)
 
 
-class Nslc(Squacapi):
+'''Nslc classes
+
+    * NslcBase inherits from SquacapiBase,
+    * Network, Channel, and Group inherit from NslcBase
+'''
+
+
+class NslcBase(SquacapiBase):
     def __init__(self, resource):
         app = "nslc"
         super().__init__(app, resource)
 
 
-class Network(Nslc):
+class Network(NslcBase):
     def __init__(self):
         resource = "networks"
+        super().__init__(resource)
+
+
+class Channel(NslcBase):
+    def __init__(self):
+        resource = "channels"
+        super().__init__(resource)
+
+
+class Group(NslcBase):
+    def __init__(self):
+        resource = "groups"
+        super().__init__(resource)
+
+
+'''Measurement classes
+
+    * MeasurentBase inherits from SquacapiBase,
+    * Measurement, and Metric inherit from MeasurentBase
+'''
+
+
+class MeasurementBase(SquacapiBase):
+    def __init__(self, resource):
+        app = "measurement"
+        super().__init__(app, resource)
+
+
+class Metric(NslcBase):
+    def __init__(self):
+        resource = "metrics"
+        super().__init__(resource)
+
+
+class Measurement(NslcBase):
+    def __init__(self):
+        resource = "measurements"
+        super().__init__(resource)
+
+
+class DashboardBase(SquacapiBase):
+    def __init__(self, resource):
+        app = "dashboard"
+        super().__init__(app, resource)
+
+
+class Dashboard(DashboardBase):
+    def __init__(self):
+        resource = "dashboards"
+        super().__init__(resource)
+
+
+class Widget(DashboardBase):
+    def __init__(self):
+        resource = "widgets"
+        super().__init__(resource)
+
+
+class WidgetType(DashboardBase):
+    def __init__(self):
+        resource = "widgettypes"
         super().__init__(resource)
