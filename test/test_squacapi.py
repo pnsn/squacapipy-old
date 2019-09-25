@@ -1,4 +1,3 @@
-from squacapipy import squacapi
 from squacapipy.squacapi import Response, Network
 from unittest.mock import patch
 '''to run
