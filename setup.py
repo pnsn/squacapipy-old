@@ -1,6 +1,8 @@
 from setuptools import setup, find_packages
 # dev steps
 # pip install -e .
+# to use virtual env 
+# source squacapipy_env/bin/activate
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
