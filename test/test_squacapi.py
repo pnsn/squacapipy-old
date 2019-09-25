@@ -1,4 +1,4 @@
-from squacapipy.squacapi import Response, Network, Channel, Group
+from squacapipy.squacapi import Response, Network, Channel
 from unittest.mock import patch
 '''to run
 
