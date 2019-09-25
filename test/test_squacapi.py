@@ -6,13 +6,14 @@ from unittest.mock import patch
     $:pytest --verbose -s test/test_squacapi.py && flake8
 '''
 
+# it doesn't make sense to mock this
 
-def test_empty_header():
-    '''should return 401 when token is missing'''
-    with patch.object(squacapi, "HEADERS", {}):
-        net = Network()
-        response = net.get()
-        assert response.status_code == 401
+# def test_empty_header():
+#     '''should return 401 when token is missing'''
+#     with patch.object(squacapi, "HEADERS", {}):
+#         net = Network()
+#         response = net.get()
+#         assert response.status_code == 401
 
 
 @patch.object(Network, 'get')
