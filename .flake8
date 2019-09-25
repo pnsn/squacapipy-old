@@ -11,3 +11,4 @@ exclude =
   manage.py,
   settings.py,
   setup.py
+  squacapipy_env
