@@ -1,6 +1,5 @@
 from setuptools import setup, find_packages
 # dev steps
-# create requirements.txt
 # pip install -e .
 
 with open("README.md", "r") as fh:
@@ -8,10 +7,10 @@ with open("README.md", "r") as fh:
 
 setup(
     name="squacapipy",
-    version="0.1",
+    version="0.2",
     author="Jon Connolly",
     author_email="joncon@uw.edu",
-    description="A python packagae for SQAUC API",
+    description="A python api wrapper for SQAUC API",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/pnsn/squacapipy",
