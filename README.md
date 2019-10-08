@@ -14,18 +14,26 @@ The following environmental variables are required
 * *SQUAC_BASE*, which is https://squac.pnsn.org
 * *SQUAC_API_BASE*, which is $SQUAC_BASE + /v1.0
 
-Environmental variables can be found in .env-example
+Environmental variables examples can be found in .env-example
 
-For bash enviromnents cp file to .env and add your token, then source
+### Classes
+#### Class Response
+All responses are of class Response and have the following two attributes:
+* status_code: int HTTP status code
+* body: array of python dictionaries objects, or error code
 
-The .env file is gitignored
-
-Or add them to your .bash_profile
-
-### Network
-params:
+#### Network
+get query params:
 * *network*: comma seperated string of networks. 
-* *channel*: exact match 
+* *channel*: exact match
+Dict response Keys:
+* code: str two letter indentifier
+* name: str, long name
+* descritpion: str
+* created_at: datetime
+* updated_at: datetime
+* user: user_id of creator
+
 
 ```python
 from squacapipy.squacapi import Network

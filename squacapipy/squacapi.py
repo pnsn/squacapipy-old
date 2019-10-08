@@ -28,9 +28,10 @@ class Response():
         takes requests obj text and turns into
         python dict
     '''
-    def __init__(self, status_code, body):
+    def __init__(self, status_code, body, response_header):
         self.status_code = status_code
         self.body = body
+        self.response_header = response_header
 
 
 class SquacapiBase():
@@ -47,10 +48,10 @@ class SquacapiBase():
             response.raise_for_status()
         except requests.exceptions.HTTPError as e:
             return Response(e.response.status_code,
-                            json.loads(e.response.text))
+                            json.loads(e.response.text), e.response.headers)
 
         return Response(response.status_code,
-                        json.loads(response.text))
+                        json.loads(response.text), response.headers)
 
     def get(self, **kwargs):
         '''get resources'''
@@ -121,13 +122,13 @@ class MeasurementBase(SquacapiBase):
         super().__init__(app, resource)
 
 
-class Metric(NslcBase):
+class Metric(MeasurementBase):
     def __init__(self):
         resource = "metrics"
         super().__init__(resource)
 
 
-class Measurement(NslcBase):
+class Measurement(MeasurementBase):
     def __init__(self):
         resource = "measurements"
         super().__init__(resource)
