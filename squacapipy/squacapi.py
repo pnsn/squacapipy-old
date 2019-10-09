@@ -2,6 +2,7 @@ import requests
 import os
 import json
 from squacapipy.errors import APITokenMissingError, APIBaseUrlError
+from datetime import datetime
 
 
 API_TOKEN = os.getenv('SQUAC_API_TOKEN')
@@ -20,6 +21,12 @@ if API_BASE_URL is None:
 
 HEADERS = {'Content-Type': 'application/json',
            'Authorization': API_TOKEN}
+
+
+def serialize_object(obj):
+    '''for objects that don't natively serialize such as datetime'''
+    if isinstance(obj, datetime):
+        return obj.__str__()
 
 
 class Response():
@@ -62,8 +69,10 @@ class SquacapiBase():
     def post(self, payload):
         '''create resources'''
         uri = self.uri()
-        response = requests.post(uri, headers=HEADERS,
-                                 data=json.dumps(payload))
+        response = requests.post(
+            uri,
+            headers=HEADERS,
+            data=json.dumps(payload, default=serialize_object))
         return self.make_response(response)
 
     def put(self, id, payload):
