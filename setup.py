@@ -9,7 +9,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="squacapipy",
-    version="0.2",
+    version="0.4",
     author="Jon Connolly",
     author_email="joncon@uw.edu",
     description="A python api wrapper for SQAUC API",

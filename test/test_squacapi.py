@@ -10,9 +10,11 @@ from unittest.mock import patch
 '''Tests are really just testing class instantiaion since the response
     object is mocked.
 '''
+
+
 @patch.object(Network, 'get')
 def test_get_networks(mock_get):
-    res = Response(200, [{'code': 'uw'}, {'code': 'cc'}])
+    res = Response(200, [{'code': 'uw'}, {'code': 'cc'}], {})
     mock_get.return_value = res
     '''should get all networks '''
     net = Network()
@@ -23,7 +25,7 @@ def test_get_networks(mock_get):
 
 @patch.object(Network, 'post')
 def test_create_network(mock_post):
-    res = Response(201, [{'code': 'uw'}])
+    res = Response(201, [{'code': 'uw'}], {})
     mock_post.return_value = res
     net = Network()
     payload = {
@@ -37,7 +39,7 @@ def test_create_network(mock_post):
 @patch.object(Network, 'put')
 def test_update_network(mock_put):
     res = Response(200, [{'code': 'f1', 'name': 'FR',
-                          'description': 'This is the description'}])
+                          'description': 'This is the description'}], {})
     mock_put.return_value = res
     net = Network()
     payload = {
@@ -57,7 +59,7 @@ def test_get_channels(mock_get):
          'lat': 45.0, 'lon': -122.0, 'elev': 2000, 'network_id': 1},
         {'code': 'EHE', 'name': "EHE", 'station_code': 'RCM',
          'station_name': 'Muir', "sample_rate": 200, 'loc': '--',
-         'lat': 45.0, 'lon': -122.0, 'elev': 2000, 'network_id': 1}])
+         'lat': 45.0, 'lon': -122.0, 'elev': 2000, 'network_id': 1}], {})
     mock_get.return_value = res
     '''should get all networks '''
     channel = Channel()

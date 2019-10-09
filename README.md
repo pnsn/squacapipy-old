@@ -45,6 +45,20 @@ net.get()
 net.get(network='uw')
 # return UW, UO, CC
 net.get(network='uw,uw,cc')
+# post single
+# payload obj
+payload1 = {   
+    'channel': int,
+    'metric': int,
+    'value': float,
+    'starttime': datetime,
+    'endtime': datetime 
+}
+net.post(payload1)
+# post multiple
+net.post([payload1,payloadn])
+# update
+net.put(payload)
 ```
 
 
