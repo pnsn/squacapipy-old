@@ -11,7 +11,7 @@ details to retrieve a token
 
 The following environmental variables are required
 * *SQUAC_API_TOKEN*
-* *SQUAC_BASE*, which is https://squac.pnsn.org
+* *SQUAC_BASE*, which is https://squacapi.pnsn.org
 * *SQUAC_API_BASE*, which is $SQUAC_BASE + /v1.0
 
 Environmental variables examples can be found in .env-example
